@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<IdentityUser>
+
+<h2>Customers Index</h2>
+
+<a asp-area="Admin" asp-controller="Home" asp-action="CreateUser" class="btn btn-primary">Create New Customer</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>
+                    <a asp-area="Admin" asp-controller="Home" asp-action="EditUser" asp-route-id="@user.Id">Edit</a>
+                    <a asp-area="Admin" asp-controller="Home" asp-action="DeleteUser" asp-route-id="@user.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
