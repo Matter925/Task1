@@ -34,7 +34,7 @@ public class HomeController : Controller
     // POST: Admin/CreateUser
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> CreateUser(CreateUserViewModel model)
+    public async Task<IActionResult> CreateUser(UserViewModel model)
     {
         if (ModelState.IsValid)
         {

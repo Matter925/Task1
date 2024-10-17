@@ -2,7 +2,7 @@
 
 namespace Task1.Areas.Admin.Models;
 
-public class CreateUserViewModel
+public class UserViewModel
 {
     [Required(ErrorMessage = "Email is required.")]
     [EmailAddress(ErrorMessage = "Invalid email format.")]

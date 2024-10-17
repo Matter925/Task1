@@ -7,8 +7,7 @@
 <h2>Products Index</h2>
 
 <a asp-area="Admin" asp-controller="Products" asp-action="Create" class="btn btn-primary">Create New Product</a>
-<button class="btn btn-secondary" onclick="window.print()">Print</button> <!-- Print Button -->
-
+<button class="btn btn-secondary" onclick="printPage()">Print</button> <!-- Print Button -->
 <table class="table">
     <thead>
         <tr>
@@ -16,7 +15,7 @@
             <th>Code</th>
             <th>Price</th>
             <th>Description</th>
-            <th>Actions</th>
+            <th class="no-print">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -27,7 +26,7 @@
                 <td>@product.Code</td>
                 <td>@product.Price.ToString("C")</td> <!-- Format price as currency -->
                 <td>@product.Description</td>
-                <td>
+                <td class="no-print">
                     <a asp-area="Admin" asp-controller="Products" asp-action="Edit" asp-route-id="@product.Id">Edit</a>
                     <a asp-area="Admin" asp-controller="Products" asp-action="Delete" asp-route-id="@product.Id">Delete</a>
                 </td>
@@ -35,6 +34,27 @@
         }
     </tbody>
 </table>
+<style>
+    @@media print {
+        /* Hide everything except the table when printing */
+        body * {
+            visibility: hidden;
+        }
+        table, table * {
+            visibility: visible;
+        }
+        table {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .no-print {
+            display: none;
+        }
+    }
+</style>
+
 <script>
     function printPage() {
         window.print();
